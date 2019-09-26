@@ -1,24 +1,27 @@
 package it.unibs.pajc;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
-	
-	public static String read(File file) {
+	/*
+	 * Voglio passare un funzione come parametro:
+	 * -->posso usare un oggetto che implementa un interfaccia
+	 * */
+	public static String read(File file, StringTransformer transf) {
 		BufferedReader in = null;
 		try {
 			in = new BufferedReader(new FileReader(file));
 			StringBuffer sb = new StringBuffer();
 			String s;
 			int numeroRiga=1;
-			while((s=in.readLine())!=null) 
+			while((s=in.readLine())!=null) {
+				s=transf.transform(s);
 				sb.append(String.format("%3d| %s\n", numeroRiga++, s));
+			}
 			return sb.toString();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -34,34 +37,14 @@ public class Main {
 		return "";
 	}
 	
+	public static String read(File file) {
+		return read(file, new DefaultTransformer());
+	}
+		
 	public static void main(String[] args) {
 		File file = new File("src/it/unibs/pajc/Main.java");
-		String text = read(file);
+		String text = read(file, new FirmaTesto());
 		System.out.println(text);
 		
-		/*
-		 * Prova scrittura
-		File lmao = new File("lmao.ayy");
-		try {
-			lmao.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		BufferedWriter out=null;
-		try {
-			out = new BufferedWriter(new FileWriter(lmao));
-			for(int i=0;i<1000;i++) {
-				out.write("gary\n");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		*/
 	}
 }
