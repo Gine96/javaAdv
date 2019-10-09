@@ -7,7 +7,7 @@ public class Termostato {
 	public enum StatoTermostato{
 		LETTURA("lettura"){
 			public StatoTermostato nextStep(Termostato term) {
-				//genera un numero a caso tra -1 e +1 per modificare la temperatura
+				//genera un numero a caso per modificare la temperatura
 				Random rand = new Random();
 				term.currTemp+=term.accesa?rand.nextDouble()*1.5:rand.nextDouble()*1.2-1;
 				System.out.println(term.currTemp);
@@ -74,14 +74,6 @@ public class Termostato {
 	
 	public StatoTermostato getStato() {
 		return this.stato;
-	}
-	
-	public double getTmin() {
-		return this.tMin;
-	}
-	
-	public double getTmax() {
-		return this.tMax;
 	}
 	
 	public StatoTermostato nextStep() {
