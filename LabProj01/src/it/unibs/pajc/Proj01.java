@@ -3,19 +3,14 @@ package it.unibs.pajc;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.BinaryOperator;
-import java.awt.event.ActionEvent;
 
 public class Proj01 {
 
