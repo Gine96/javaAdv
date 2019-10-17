@@ -51,49 +51,48 @@ public class GuiProj02 implements ActionListener{
 		frame.setBounds(100, 100, 450, 275);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel topPan = new JPanel();
 		frame.getContentPane().add(topPan, BorderLayout.NORTH);
-		
+
 		JPanel centerPan = new JPanel();
 		frame.getContentPane().add(centerPan, BorderLayout.CENTER);
 		centerPan.setLayout(new BorderLayout(0, 0));
-		
+
 		JSplitPane splitPane = new JSplitPane();
 		centerPan.add(splitPane, BorderLayout.CENTER);
-		
+
 		JList list = new JList();
 		list.setModel(listModel);
 		splitPane.setRightComponent(list);
-		
+
 		JButton btnMain = new JButton("Main");
 		splitPane.setLeftComponent(btnMain);
-		
+
 		btnA = new JButton("A");
 		topPan.add(btnA);
-		
+
 		JButton btnB = new JButton("B");
 		topPan.add(btnB);
-		
+
 		//per creare un'azione da fa generalmente posso implementare l'interfaccia ActionListener
 		//poi implementi il metodo
 		//ActionListener handlerBtn = e -> System.out.println("Bottone premuto");
-		
+
 		btnA.addActionListener(e->{
 			System.out.println("A premuto");
 		});
-		
+
 		btnA.addActionListener(this);
 		btnB.addActionListener(this);
 		btnMain.addActionListener(this);
-		
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		listModel.addElement("Bottone premuto " + e.getActionCommand());
-		
+
 	}
-	
+
 }
