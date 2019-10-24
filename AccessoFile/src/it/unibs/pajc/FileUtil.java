@@ -38,7 +38,7 @@ public class FileUtil {
 	}
 
 	public static String read(File file) {
-		return read(file, new DefaultTransformer());
+		return read(file, null);
 	}
 
 	public static void dump(String filename) {
