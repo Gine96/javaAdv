@@ -16,14 +16,27 @@ public class ButtonStrip extends JPanel implements ActionListener{
 	 * Create the panel.
 	 */
 	public ButtonStrip() {
-		btnNames = new ArrayList<String>();
+
+	}
+
+	public ButtonStrip(ArrayList<String> btnNames) {
+		this.btnNames=(ArrayList<String>)btnNames.clone();
+		initialize();
 	}
 
 	public void addButton(String name) {
-		this.btnNames.add(name);
+		if(this.btnNames==null)
+			btnNames = new ArrayList<String>();
 		JButton btn = new JButton(name);
 		btn.addActionListener(this);
 		this.add(btn);
+	}
+
+	private void initialize() {
+		if(this.btnNames==null)
+			return;
+		for(String name:this.btnNames)
+			addButton(name);
 	}
 
 	@Override

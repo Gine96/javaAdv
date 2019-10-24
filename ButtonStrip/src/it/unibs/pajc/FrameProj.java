@@ -44,10 +44,17 @@ public class FrameProj {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		
-		ButtonStrip buttonStrip = new ButtonStrip();
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("test");
+		names.add("1");
+		names.add("2");
+		names.add("3");
+		ButtonStrip buttonStrip = new ButtonStrip(names);
 		frame.getContentPane().add(buttonStrip, BorderLayout.SOUTH);
-		buttonStrip.addButton("prova");
+		buttonStrip.addButton("A");
+		buttonStrip.addButton("B");
+		buttonStrip.addButton("OK");
+		buttonStrip.addButton("Prova");
 		
 		
 	}
