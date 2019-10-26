@@ -55,6 +55,9 @@ public class FrameProj {
 		buttonStrip.addButton("B");
 		buttonStrip.addButton("OK");
 		buttonStrip.addButton("Prova");
+		buttonStrip.addActionListener(e->{
+			System.out.println(e.getActionCommand());
+		});
 		
 		
 	}

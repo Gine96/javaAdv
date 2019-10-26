@@ -1,6 +1,5 @@
 package it.unibs.pajc;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,8 +19,7 @@ public class ButtonStrip extends JPanel implements ActionListener{
 	}
 
 	public ButtonStrip(ArrayList<String> btnNames) {
-		this.btnNames=(ArrayList<String>)btnNames.clone();
-		initialize();
+		initialize(btnNames);
 	}
 
 	public void addButton(String name) {
@@ -32,24 +30,31 @@ public class ButtonStrip extends JPanel implements ActionListener{
 		this.add(btn);
 	}
 
-	private void initialize() {
-		if(this.btnNames==null)
+	private void initialize(ArrayList<String> btnNames) {
+		if(btnNames==null)
 			return;
-		for(String name:this.btnNames)
+		for(String name:btnNames)
 			addButton(name);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		fireActionEvent(e);
+		/*
+		 * devo mandare l'evento generato all'esterno!
+		 * dal bottone l'evento va al contenitore (in questo caso il pannello)
+		 * dal contenitore all'esterno
+		 * */
+		fireActionPerformed(e);
 
 	}
 
-	private void fireActionEvent(ActionEvent e) {
-		for(ActionListener l : listenerList) {
-			ActionEvent ev = new ActionEvent(this,0,e.getActionCommand());
+	private void fireActionPerformed(ActionEvent e) {
+		//questo actionevent serve per cambiare il source dell'evento facendolo diventare il pannello stesso
+		//per impedire all'esterno di accedere direttamente ai componenti
+		ActionEvent ev = new ActionEvent(this,0,e.getActionCommand());
+		for(ActionListener l : listenerList) 
 			l.actionPerformed(ev);
-		}
+		
 	}
 	ArrayList<ActionListener> listenerList = new ArrayList<ActionListener>();
 	public void addActionListener(ActionListener l) {
