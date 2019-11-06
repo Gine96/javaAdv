@@ -4,9 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import javax.swing.JButton;
 
-public class Paint {
+public class LabScacchiera {
 
 	private JFrame frame;
 
@@ -17,7 +16,7 @@ public class Paint {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Paint window = new Paint();
+					LabScacchiera window = new LabScacchiera();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +28,7 @@ public class Paint {
 	/**
 	 * Create the application.
 	 */
-	public Paint() {
+	public LabScacchiera() {
 		initialize();
 	}
 
@@ -38,18 +37,11 @@ public class Paint {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 512, 512);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		PaintArea paintArea = new PaintArea();
-		frame.getContentPane().add(paintArea, BorderLayout.CENTER);
-		
-		JButton btnStep = new JButton("step");
-		frame.getContentPane().add(btnStep, BorderLayout.SOUTH);
-		
-		btnStep.addActionListener(e->{
-			paintArea.stepNext();
-		});
+		Board board = new Board();
+		frame.getContentPane().add(board, BorderLayout.CENTER);
 	}
 
 }
