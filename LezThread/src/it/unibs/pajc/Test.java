@@ -1,12 +1,16 @@
 package it.unibs.pajc;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Test{
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 	
 		//solitamente crei gli oggetti direttamente nell'executorservice
 //		Mytask task1 = new Mytask("task1", 31);
@@ -39,10 +43,38 @@ public class Test{
 		 */
 		ExecutorService ex2 = Executors.newFixedThreadPool(2);
 		
-		ex2.submit(new Mytask("task1", 31));
-		ex2.submit(new Mytask("task2", 25));
-		ex2.submit(new Mytask("task3", 13));
+//		Future<Integer> f1 = ex2.submit(new Mytask("task1", 31));
+//		Future<Integer> f2 = ex2.submit(new Mytask("task2", 25));
+//		Future<Integer> f3 = ex2.submit(new Mytask("task3", 13));
 		ex2.shutdown();
 		
+		/*
+		 * submit torna Future<>
+		 */
+		
+//		System.out.println(f1.get());
+//		System.out.println(f2.get());
+//		System.out.println(f3.get());
+		
+		ExecutorService ex3 = Executors.newFixedThreadPool(2);
+		
+		List<Callable<String>> callables = Arrays.asList(
+				()->"alfa",
+				()->"beta",
+				()->"gamma"
+				);
+		
+		executor.invokeAll(callables)
+		.stream()
+		.map(e->{
+			try {
+				return e.get();
+			} catch (Exception e1) {
+				
+			}
+			return null;
+		})
+		.forEach(System.out::println);
+		ex3.shutdown();
 	}
 }

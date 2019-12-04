@@ -1,6 +1,8 @@
 package it.unibs.pajc;
 
-public class Mytask implements Runnable{
+import java.util.concurrent.Callable;
+
+public class Mytask implements Callable<Integer>{
 	
 	private static int nTask=0;
 	int id=0;
@@ -14,7 +16,7 @@ public class Mytask implements Runnable{
 		this.id=nTask++;
 	}
 
-	public void run() {
+	public Integer call() throws Exception{
 		int step = 5000/delay;
 		
 		for(int i=0;i<step;i++) {
@@ -28,6 +30,7 @@ public class Mytask implements Runnable{
 			}
 			
 		}
+		return step;
 		
 	}
 	
