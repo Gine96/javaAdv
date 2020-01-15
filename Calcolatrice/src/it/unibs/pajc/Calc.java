@@ -6,7 +6,7 @@ public class Calc {
 	public static void main(String[] args) {
 		double a=2;
 		double b=0;
-		String op="/";
+		String op="^";
 		double result=0;
 		
 		BinaryOp operator = null;

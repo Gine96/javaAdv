@@ -23,14 +23,25 @@ public class MyServer {
 				
 				
 		){
-			System.out.println("Server: attesa connessione");
+			System.out.println("Server: client connesso: " + client.getInetAddress() + ":" + client.getPort());
 			
 			String request;
 			while((request = in.readLine())!=null) {
 				System.out.println("Server: " + request);
+				String response = request.toUpperCase();
+				
+				if("QUIT".equals(response)) {
+				
+					out.println("Arrivederci");
+					out.flush();
+					break;
+				
+				}
+				
 				out.println(request.toUpperCase());
 				out.flush();//libera lo stream e manda risposta
 			}
+			System.out.println("Server: closed");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -1,17 +1,20 @@
 package it.unibs.pajc;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 public class Test{
 	
 	
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-	
+		
 		//solitamente crei gli oggetti direttamente nell'executorservice
 //		Mytask task1 = new Mytask("task1", 31);
 //		Mytask task2 = new Mytask("task2", 25);
@@ -64,7 +67,7 @@ public class Test{
 				()->"gamma"
 				);
 		
-		executor.invokeAll(callables)
+		ex3.invokeAll(callables)
 		.stream()
 		.map(e->{
 			try {
@@ -76,5 +79,25 @@ public class Test{
 		})
 		.forEach(System.out::println);
 		ex3.shutdown();
+		
+		
+		ExecutorService ex4 = Executors.newFixedThreadPool(3);
+		Counter counter = new Counter();
+		IntStream.range(0, 10000).forEach(i->ex4.submit(counter::inc));
+		ex4.shutdown();
+		ex4.awaitTermination(60, TimeUnit.SECONDS);
+		System.out.println(counter.count);
+		
+		
+		
 	}
 }
+
+class Counter{
+	int count=0;
+	
+	synchronized void inc() {
+		count++;
+	}
+}
+

@@ -90,6 +90,12 @@ public class StreamTest {
 		 * genera sequenza di fibonacci con uno stream
 		 * */
 		
+		System.out.println(Arrays
+				.stream(new int[] {1,2,3,4,5})
+				.map(e -> e*e)
+				.filter(a -> a%2!=0)
+				.sum());
+		
 		
 	}
 }

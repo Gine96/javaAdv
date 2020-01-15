@@ -7,7 +7,7 @@ public class esempio {
 		ripeti(10,()->System.out.println("hello"));
 		//qua da errore
 		//ripeti(10,()->System.out.println(i));
-		ripeti(10, (qualcosa)->System.out.println(qualcosa));
+		ripeti(10, (e)->System.out.println(e+" lmao"));
 	}
 	
 	public static void hello(int n) {
